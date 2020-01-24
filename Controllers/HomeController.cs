@@ -22,7 +22,7 @@ namespace LovgrenMIS4200.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Info about ME.";
 
             return View();
         }
