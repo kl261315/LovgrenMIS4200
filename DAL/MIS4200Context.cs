@@ -16,5 +16,7 @@ namespace LovgrenMIS4200.DAL
         
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Orders> Orders { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<OrderDetail> orderDetails { get; set; }
     }
 }
