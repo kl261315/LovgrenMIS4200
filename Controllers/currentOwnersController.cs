@@ -7,110 +7,120 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LovgrenMIS4200.DAL;
+using LovgrenMIS4200.Models;
 
 namespace LovgrenMIS4200.Controllers
 {
-    public class CarsController : Controller
+    public class currentOwnersController : Controller
     {
         private MIS4200Context db = new MIS4200Context();
 
-        // GET: Cars
+        // GET: currentOwners
         public ActionResult Index()
         {
-            return View(db.Cars.ToList());
+            var currentOwners = db.currentOwners.Include(c => c.Car).Include(c => c.Owner);
+            return View(currentOwners.ToList());
         }
 
-        // GET: Cars/Details/5
+        // GET: currentOwners/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cars cars = db.Cars.Find(id);
-            if (cars == null)
+            currentOwner currentOwner = db.currentOwners.Find(id);
+            if (currentOwner == null)
             {
                 return HttpNotFound();
             }
-            return View(cars);
+            return View(currentOwner);
         }
 
-        // GET: Cars/Create
+        // GET: currentOwners/Create
         public ActionResult Create()
         {
+            ViewBag.carsID = new SelectList(db.Cars, "CarsID", "carNickName");
+            ViewBag.ownerID = new SelectList(db.Owners, "ownerID", "ownerLastName");
             return View();
         }
 
-        // POST: Cars/Create
+        // POST: currentOwners/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarsID,carNickName,license,carYear,carMake,carModel")] Cars cars)
+        public ActionResult Create([Bind(Include = "currentOwnerID,qtyofCars,ownerID,carsID")] currentOwner currentOwner)
         {
             if (ModelState.IsValid)
             {
-                db.Cars.Add(cars);
+                db.currentOwners.Add(currentOwner);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(cars);
+            ViewBag.carsID = new SelectList(db.Cars, "CarsID", "carNickName", currentOwner.carsID);
+            ViewBag.ownerID = new SelectList(db.Owners, "ownerID", "ownerLastName", currentOwner.ownerID);
+            return View(currentOwner);
         }
 
-        // GET: Cars/Edit/5
+        // GET: currentOwners/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cars cars = db.Cars.Find(id);
-            if (cars == null)
+            currentOwner currentOwner = db.currentOwners.Find(id);
+            if (currentOwner == null)
             {
                 return HttpNotFound();
             }
-            return View(cars);
+            ViewBag.carsID = new SelectList(db.Cars, "CarsID", "carNickName", currentOwner.carsID);
+            ViewBag.ownerID = new SelectList(db.Owners, "ownerID", "ownerLastName", currentOwner.ownerID);
+            return View(currentOwner);
         }
 
-        // POST: Cars/Edit/5
+        // POST: currentOwners/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarsID,carNickName,license,carYear,carMake,carModel")] Cars cars)
+        public ActionResult Edit([Bind(Include = "currentOwnerID,qtyofCars,ownerID,carsID")] currentOwner currentOwner)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cars).State = EntityState.Modified;
+                db.Entry(currentOwner).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cars);
+            ViewBag.carsID = new SelectList(db.Cars, "CarsID", "carNickName", currentOwner.carsID);
+            ViewBag.ownerID = new SelectList(db.Owners, "ownerID", "ownerLastName", currentOwner.ownerID);
+            return View(currentOwner);
         }
 
-        // GET: Cars/Delete/5
+        // GET: currentOwners/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cars cars = db.Cars.Find(id);
-            if (cars == null)
+            currentOwner currentOwner = db.currentOwners.Find(id);
+            if (currentOwner == null)
             {
                 return HttpNotFound();
             }
-            return View(cars);
+            return View(currentOwner);
         }
 
-        // POST: Cars/Delete/5
+        // POST: currentOwners/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cars cars = db.Cars.Find(id);
-            db.Cars.Remove(cars);
+            currentOwner currentOwner = db.currentOwners.Find(id);
+            db.currentOwners.Remove(currentOwner);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,48 @@
+﻿@model LovgrenMIS4200.Models.currentOwner
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>currentOwner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.carNickName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.carNickName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner.ownerLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner.ownerLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qtyofCars)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtyofCars)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

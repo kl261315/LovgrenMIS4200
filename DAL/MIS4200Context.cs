@@ -26,7 +26,8 @@ namespace LovgrenMIS4200.DAL
         // homework 2 
         public DbSet<Cars> Cars { get; set; }
         public DbSet<Owner> Owners { get; set; }
-        
+        public DbSet<currentOwner> currentOwners { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();

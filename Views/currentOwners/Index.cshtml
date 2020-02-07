@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LovgrenMIS4200.Models.currentOwner>
+
+@{
+    ViewBag.Title = "CurrentOwnersIndex";
+}
+
+<h2>Current Owners Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Car.carNickName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Owner.ownerLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qtyofCars)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Car.carNickName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Owner.ownerLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qtyofCars)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.currentOwnerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.currentOwnerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.currentOwnerID })
+        </td>
+    </tr>
+}
+
+</table>

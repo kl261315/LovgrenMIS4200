@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LovgrenMIS4200.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,8 +12,8 @@ namespace LovgrenMIS4200.Models
         public int qtyofCars { get; set; }
         public int ownerID { get; set; }
         public virtual Owner Owner { get; set; }
-        public int CarsID { get; set; }
-      // public virtual Cars Cars { get; set; }
+        public int carsID { get; set; }
+       public virtual Cars Car { get; set; }
 
 
     }
