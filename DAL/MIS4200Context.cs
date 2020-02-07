@@ -22,6 +22,11 @@ namespace LovgrenMIS4200.DAL
         public DbSet<Products> Products { get; set; }
         public DbSet<OrderDetail> orderDetails { get; set; }
         // add this method - it will be used later
+
+        // homework 2 
+        public DbSet<Cars> Cars { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
