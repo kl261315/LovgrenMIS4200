@@ -20,16 +20,35 @@
                 @Html.ActionLink("Lovgren", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" >
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
-                </ul>
+                <ul class="nav navbar-nav">
+                    
+                        <a href="http://cob.ohio.edu/kl261315" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </a>
+                        <a href="http://cob.ohio.edu/kl261315/Home/Contact" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-earphone"> </span> </a>
+
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                              
+                                <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+</ul>
                 @Html.Partial("_LoginPartial")
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Select an Option 
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#"></a>@Html.ActionLink("Cars", "Index", "Cars")</li>
+                    <li><a href="#"></a>@Html.ActionLink("Owners", "Index", "Owner")</li>
+                    <li><a href="#"></a>@Html.ActionLink("Current Owners", "Index", "currentOwner")</li>
+                </ul>
             </div>
+                </div>
+            </div>
+
         </div>
-    </div>
+
     <div class="container body-content">
         <br />
         @RenderBody()
